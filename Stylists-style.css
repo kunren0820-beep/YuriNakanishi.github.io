@@ -1,0 +1,659 @@
+body {
+  margin: 0;
+  background-color: #EBE2D5;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+h1, h2{
+  font-family: "Kiwi Maru", serif;
+  font-weight: 500;
+}
+
+.site-header {
+  position: static;
+  background-color: #7E6037;
+  color: rgba(255,255,255,0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 32px;
+  z-index: 1000;
+}
+
+.header-left,
+.header-right {
+  font-size: 15px;
+}
+
+.header-left p {
+  line-height: 1.2;
+}
+
+.pc-text {
+  display: block;
+}
+
+.sp-text,.sp-text1,.sp-reserve-btn,.sp-only {
+  display: none;
+}
+
+/* ===== ロゴ ===== */
+.header-center {
+    text-align: center;
+    flex: 1; /* 左右に伸ばして中央寄せ */
+}
+
+.logo-link {
+    display: inline-block;
+}
+
+.logo-img {
+    max-height: 60px; /* PC用高さ調整 */
+    width: auto;
+}
+
+
+/* ===== PCナビゲーション ===== */
+#menubar {
+  display: flex;             
+  align-items: center;       
+  justify-content: center;   
+  list-style: none;
+  padding: 16px 32px;
+  margin: 0;
+  background-color: #EBE2D5;
+  gap: 40px;
+  position: relative;        /* ボタン位置調整用 */
+}
+
+/* 通常リンク（ボタンを除く）の下線 */
+#menubar li:not(.btn-reserve) a {
+  color: #7E6037;
+  position: relative;        /* 下線用 */
+  padding: 4px 8px;
+  transition: color 0.3s;
+}
+
+#menubar li:not(.btn-reserve) a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(126,138,82,0.4);
+  opacity: 0.6;
+  transition: background 0.3s;
+}
+
+#menubar li:not(.btn-reserve) a:hover {
+  color: #5c4827;
+}
+
+#menubar li:not(.btn-reserve) a:hover::after {
+  background: #5c4827;
+}
+
+/* ===== ご予約ボタン ===== */
+#menubar li.btn-reserve {
+  position: absolute;        /* メニュー中央から右に配置 */
+  right: 32px;               
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#menubar li.btn-reserve a {
+  background-color: #5c4827;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: background 0.3s;
+  text-decoration: none;     /* 下線消す */
+}
+
+#menubar li.btn-reserve a:hover {
+  background-color: #7e6037;
+}
+
+.firstview {
+  background-color: #101010;
+  padding: 120px 32px;
+  background-image:
+      linear-gradient(rgba(126,138,82,0.25), rgba(126,138,82,0.25)),
+    url(stylists-back.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 240px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 50px;
+  color: #FFFFFF;
+  margin: 24px 0;
+  text-align: center;
+}
+
+h2.section-title {
+  position: relative;          /* ★修正：マーカー基準 */
+  display: inline-block;
+  width: fit-content;   /* ★追加 */
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 26px;
+  box-shadow: none;
+   z-index: 1;
+}
+
+/* 緑マーカー */
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 6px;
+  background: rgba(126,138,82,0.35);
+  z-index: 0;  /* -3じゃなくて -1で十分 */
+}
+
+/* ===== PC用 ===== */
+.stylists-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto  60px;
+  align-items: stretch;
+}
+
+.stylists-section {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f3ec;
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  flex: 1 1 45%;
+  max-width: 500px;
+}
+
+.profile-top {
+  display: flex;
+  gap: 32px; 
+  margin-bottom: 16px;
+  align-items: center;
+    flex-direction: column;   /* ← 縦並びにする */
+  align-items: center;      /* ← 写真を中央 */
+}
+
+.photo-main {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ★修正：施術写真を安定させる */
+.sub-wrap {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.photo-sub {
+flex: 0 0 35%;
+  max-width: 35%;
+  opacity: 0.85;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.profile-right {
+  flex: 1;
+  min-width: 240px;
+  max-width: 360px;
+}
+
+
+.profile-keywords {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.profile-keywords span {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+/* 技術系 */
+.profile-keywords .skill {
+  background-color: rgba(126,96,55,0.12);
+  color: #7E6037;
+}
+
+/* 人柄系 */
+.profile-keywords .personality {
+  background-color: rgba(126,138,82,0.18);
+  color: #5c6a3a;
+}
+
+.sentence {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+/* ===== フッター ===== */
+footer{
+  background-color: #7E6037;
+  min-height: 100px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  padding: 0 30px;
+}
+
+footer p {
+  line-height: 1.6;
+}
+
+.sns{
+  display: flex;
+  gap: 36px;
+}
+
+.sns img{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+#nav-toggle {
+  display: none;
+}
+
+.hamburger,
+.sp-nav {
+  display: none;
+}
+
+/* ===== スマホ用 ===== */
+@media screen and (max-width: 768px) {
+
+    #menubar {
+    display: none;
+  }
+
+  .pc-text {
+    display: none;
+  }
+
+
+    /* 左側３行を指定 */
+.header-left p {
+    margin-top: 0;
+  }
+
+  .sp-text1 {
+    display: block;
+    font-size: 10px;
+    line-height: 1.3;
+    font-weight: 405;
+    color: #fff;
+    margin-bottom: 4px; /* 徒歩3分：少し広め */
+  }
+
+  .sp-text {
+    display: block;
+    font-size: 8px;
+    line-height: 1.15;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1px;  /* 電話・営業時間：詰める */
+  }
+
+  .sp-text:last-child {
+    margin-bottom: 0;
+  }
+
+
+
+
+      /* ヘッダー */
+  .site-header {
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  
+  .site-header {
+    position: relative;
+    z-index: 100;
+    padding: 12px 16px; 
+  }
+
+
+   /* ヘッダー中央ロゴを絶対中央に */
+  .header-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* 縦も中央 */
+    z-index: 50; /* ハンバーガーやテキストより上 */
+  }
+
+    .logo-img {
+        max-height: 40px; /* スマホでは少し小さく */
+    }
+
+  /* 左右のテキストは通常通り */
+  .header-left, .header-right {
+    flex: none; /* 幅を固定せず、テキストに合わせる */
+  }
+
+
+
+  /* ハンバーガーメニュー*/
+  .hamburger {
+    position: relative;
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 200;
+  }
+
+
+  .sp-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    width: 50vw;
+    max-width: 180px;
+
+    padding: 24px;
+    gap: 20px;
+    flex-direction: column;
+
+    background-color: rgba(235, 226, 213, 0.96);
+    backdrop-filter: blur(4px);
+
+    font-size: 16px;
+    z-index: 150;
+
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .sp-nav a {
+  text-decoration: none;
+  font-size: 15px;
+  padding: 6px 0;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+    position: relative;
+  display: block; 
+  color: #7E6037;   
+  }
+
+  
+  .sp-nav a:active {
+  opacity: 0.7;
+}
+  
+.sp-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid rgba(126, 96, 55, 0.2); 
+}
+
+
+#nav-toggle:checked + .hamburger + .sp-nav {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 13px;
+      font-size: 22px;
+  color: #7E6037;
+  opacity: 0.6;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+
+
+
+
+  /* 常時表示の予約ボタン*/
+.sp-reserve-btn {
+    position: fixed;
+    bottom: 52px;
+    right: 16px;
+    z-index: 999;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 90px;       /* 少し大きめに */
+    height: 90px;      /* 少し大きめに */
+    background-color: #7E6037;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 11px;    /* 少し小さめ */
+    text-align: center;
+    text-decoration: none;
+
+   background-image: linear-gradient(#3a6f61, #2F5D50);
+  border: 3px solid #5f8f82;
+
+  box-shadow:
+    0 6px 12px rgba(0,0,0,0.15),
+    inset 0 2px 0 rgba(255,255,255,0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    padding: 2px; 
+}
+
+/* 矢印アイコン */
+.sp-reserve-btn::after {
+    content: "→";
+    display: block;
+    font-size: 13px;
+    line-height: 1;
+}
+
+  /* ファーストビュー */
+  .firstview {
+    height: 150px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; /* 横並び防止 */
+    justify-content: center;
+    align-content: center;
+    padding: 0;
+    background-image:
+    linear-gradient(rgba(126,138,82,0.25), rgba(126,138,82,0.25)),
+    url(sp-stylists-back.png);
+  }
+
+  .fv-inner {
+  text-align: center;
+  padding-top: 10px; /* スマホなら少し上に余白 */
+}
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+
+
+   .stylists-section {
+    flex: none;               /* PC用 flex 設定を無効にして幅を固定 */
+    width: 80%;               /* 画面幅の80%に */
+    max-width: 360px;         /* 好きな最大幅 */
+    display: flex;            /* column も保持 */
+    flex-direction: column;   /* 縦並び */
+    align-items: center;      /* 中央寄せ */
+    padding: 16px 16px;
+    margin: 0 auto 24px;
+  }
+
+  /* 順番を強制 */
+  h2.section-title { order: 1; }      /* 名前 */
+  .profile-top { order: 2; }          /* メイン写真 */
+  .profile-keywords { order: 3; }     /* 短い文言２つ横並び */
+  .sentence { order: 4; }             /* 長い文章 */
+  .sub-wrap { order: 5; }             /* サブ写真 */
+
+  /* メイン写真 */
+  .profile-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .photo-main {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* 名前 */
+  h2.section-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* キーワード：必ず横並び */
+  .profile-keywords {
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  /* キーワードをスマホだけ小さく */
+  .profile-keywords span {
+    font-size: 9px; /* 好きなサイズに変更 */
+  }
+
+
+  /* 長い文章 */
+  .sentence {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding: 0 8px;
+  }
+
+  /* サブ写真 */
+  .sub-wrap {
+    display: flex !important;
+    flex-direction: column;  
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+/* 文章を上に */
+.sub-wrap .sentence {
+    order: 1;
+    text-align: center;
+}
+
+/* サブ写真を下に */
+.sub-wrap .photo-sub {
+    order: 2;
+}
+
+
+  .sp-only { display: block; }
+  .pc-only { display: none; }
+
+  .photo-sub {
+    width: 90%;
+    max-width: 260px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  /* フッター */
+  footer {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;   /* ← これ大事 */
+    gap: 6px;
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 10.5px;
+    height: auto;
+  }
+
+  footer p {
+    white-space: pre-line;
+    min-width: 0;
+     line-height: 1.6; 
+    text-align: center;
+  }
+
+    .footer-address {
+    order: 1;
+  }
+
+
+  .sns {
+    gap: 15px;
+     margin-top: 4px;
+     order: 2;
+  }
+
+  .sns img {
+  width: 28px;
+  height: 28px;
+  opacity: 0.8;
+  }
+  
+  .footer-copy {
+    order: 3;
+    font-size: 9px;
+    opacity: 0.7;
+  }
+  
+}
