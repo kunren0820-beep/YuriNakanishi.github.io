@@ -252,25 +252,45 @@ section a {
   text-align: center;
   margin-top: 12px;
   color: #5a4f44;
-  background-color: rgba(255,255,255,0.2); 
-  padding: 6px; 
+  background-color: rgba(255,255,255,0.2);
+  padding: 6px;
   border-radius: 4px;
-  transition: all 0.3s ease; /* font-size だけでなくpaddingもスムーズに */
+  transition: all 0.3s ease;
 }
 
+/* 長文は最初少し隠す */
+.more-text {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* ホバー時に自然に出す */
+.image-box:hover .more-text {
+  max-height: 80px;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+/* 画像の拡大は少し弱める */
 .image-box:hover {
-  transform: scale(1.15);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  z-index: 3;
+  transform: scale(1.05);
 }
 
-
-
-.image-box:hover figcaption {
-  font-size: 16px;
-  padding: 20px;
+.read-hint {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
 }
 
+.image-box:hover .read-hint {
+  opacity: 1;
+  letter-spacing: 1px;
+}
 /* ===== wrap ===== */
 .long-short-wrap,
 .color-parma-wrap {
@@ -630,6 +650,7 @@ h2.section-title {
   max-width: 100%;
     width: 86%;        
   max-width: 320px; 
+  margin-bottom: 22px;
 }
 
 
@@ -647,6 +668,25 @@ h2.section-title {
 }
 
 
+/* ===== スマホ：詳細常時表示 ===== */
+
+.more-text {
+  max-height: none !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  margin-top: 4px;
+}
+
+.read-hint {
+  display: none !important;
+}
+
+
+.image-box figcaption,
+.more-text {
+  transition: none !important;
+}
+
   /* スマホではhover無効 */
   .image-box:hover {
     transform: none;
@@ -660,6 +700,34 @@ h2.section-title {
   }
 
 
+/* スマホ：スタイル名強調 */
+.image-box figcaption {
+  font-size: 13px;   
+  line-height: 1.6;
+}
+
+.image-box figcaption strong {
+  display: block;
+  font-size: 11px;      /* タイトルだけ少し大きめ */
+  margin-bottom: 4px;
+  color: #2b2520;
+}
+
+/* スマホ：スタイル名だけ強調 */
+.image-box .short-text {
+  display: block;
+  font-size: 13px;   /* 少し大きく */
+  font-weight: 500;  /* 上品な太さ */
+  margin-bottom: 4px;
+  color: #2b2520;
+}
+
+/* 説明文 */
+.image-box .more-text {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #5a4f44;
+}
 
 /* フッター */
   footer {
