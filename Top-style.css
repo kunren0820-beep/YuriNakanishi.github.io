@@ -386,32 +386,30 @@ h3 {
   object-fit: cover;
 }
 
-/* スクロールバー */
-
-
-
-/* 共通: 横スクロールコンテナ */
+/* 自動で横に流れる */
 .section-styles .image-row-full {
-  display: flex;
-  gap: 16px;
-  padding-bottom: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow: hidden; /* 横スクロール消す */
   position: relative;
 }
 
-
-.section-styles .image-row-full::-webkit-scrollbar {
-  display: none;            /* Chrome/Safari */
+.image-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: scrollLoop 80s linear infinite;
 }
 
-.section-styles .image-row-full img {
-  flex: 0 0 auto;
-  height: auto;
-  border-radius: 6px;
-  scroll-snap-align: start;
-  object-fit: cover;
+@keyframes scrollLoop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
+
+
+
 
 
 .stylists-top {
@@ -956,48 +954,14 @@ footer p {
 }
 
 @media (max-width: 768px) {
-  .section-styles .image-row-full img {
-    /* gapを考慮して少し縮める */
-    width: calc(50% - 8px) !important; 
-    flex: 0 0 auto !important;
-    margin: 0 !important;
-  }
-
-  .section-styles .image-row-full {
-    gap: 8px; /* スマホ用隙間 */
-    padding-bottom: 20px;
-
+.section-styles .image-row-full img {
+  width: 160px;
+  flex: 0 0 auto;
 }
 
-  .section-styles .image-row-full {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 12px;
+  .image-track {
+    animation: scrollLoop 70s linear infinite;
   }
 
-
-  .section-styles .image-row-full img {
-    flex: 0 0 70%;
-    scroll-snap-align: start;
-    border-radius: 6px;
-  }
-
-.image-row-full::after {
-  content: "→";
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.scroll-hint {
-  font-size: 12px;
-  opacity: 0.6;
-  margin-top: 4px;
-}
 
 }
